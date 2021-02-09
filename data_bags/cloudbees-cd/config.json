@@ -1,0 +1,7 @@
+{
+  "id": "config",
+  "installer-user-password": "cloudbees1",
+  "db-password": "cloudbees1",
+  "elasticsearch-password": "cloudbees1",
+  "analytics-remoteserver-password": "changeme"
+}
