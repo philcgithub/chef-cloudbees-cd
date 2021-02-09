@@ -11,7 +11,7 @@ config_bag = data_bag_item('cloudbees-cd', 'config')
 elasticsearch_password = config_bag['elasticsearch-password']
 analytics_remoteserver = "#{node['cloudbees-cd']['analytics-remoteserver']}"
 analytics_remoteserver_user = "#{node['cloudbees-cd']['analytics-remoteserver-user']}"
-analytics_remoteserver_password = config_bag['analytics-remoteserver-password']
+admin_password = config_bag['admin-password']
 
 # Check server setup has finished
 ruby_block 'Wait for CloudBees CD Server setup to finish' do
@@ -25,7 +25,7 @@ end
 
 # Run the installer
 execute 'install-cloudbees-cd-analytics' do
-  command "sudo #{installer_path}/#{analytics_installer_file} --mode silent --elasticsearchUserPassword #{elasticsearch_password} --remoteServer #{analytics_remoteserver} --unixServerUser #{user} --unixServerGroup #{user} --remoteServerPassword #{analytics_remoteserver_password} --remoteServerUser #{analytics_remoteserver_user}"
+  command "sudo #{installer_path}/#{analytics_installer_file} --mode silent --elasticsearchUserPassword #{elasticsearch_password} --remoteServer #{analytics_remoteserver} --unixServerUser #{user} --unixServerGroup #{user} --remoteServerPassword #{admin_password} --remoteServerUser #{analytics_remoteserver_user}"
   user "#{user}"
   group "#{user}"
   action :run
