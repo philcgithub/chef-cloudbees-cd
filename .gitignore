@@ -1,0 +1,33 @@
+## Ignore Chef related files and secrets
+.chef
+.chef/*.pem
+.chef/encrypted_data_bag_secret
+
+## Ignore Chef-Zero files
+clients
+nodes
+
+# ## OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+# ## Example of the workstation pattern.
+# !/cookbooks/chef_workstation/files/default/bundler/Gemfile
+# !/cookbooks/chef_workstation/files/default/bundler/Gemfile.lock
+# cookbooks/*
+# !cookbooks/chef_workstation
+
+# ##Chef
+.kitchen/
+.vagrant
+nodes
+metadata.json
+
+# ##ruby
+*.gem
+Gemfile
+Gemfile.lock
+.rake_test_cache
+
+# ## Visual Studio Code
+.vscode
