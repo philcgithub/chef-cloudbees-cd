@@ -6,8 +6,7 @@ This recipe will install CloudBees CD.  It currently assumes all components will
 
 The installation will be using the self-singed certificates.
 
-It was created and tested on Ubuntu 18.04.
-
+It has been tested on Ubuntu 18.04 and RHEL 8.
 ## Roles ##
 
 There is a single role at this time:
@@ -19,7 +18,7 @@ There is a single role at this time:
 - Change values in data_bag 'cloudbees-cd' as needed.  This data bag is for sensitive data (ie passwords)
 - Encrypt data_bag 'cloudbees-cd' as usual
 
-Run the role, for example:
+Run the role, for example using Chef Zero approach:
 
 ```bash
 sudo chef-client --local-mode --why-run --runlist "role[all-in-one]"
