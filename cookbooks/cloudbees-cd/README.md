@@ -9,9 +9,11 @@ The installation will be using the self-singed certificates.
 It has been tested on Ubuntu 18.04 and RHEL 8.
 ## Roles ##
 
-There is a single role at this time:
+The following roles have been defined.
 
 - all-in-one: Installs on the components on a single target
+- server-only: Installs the CloudBees CD server only
+- analytics-only: Installs the CloudBees Analytics only
 ## How to use ##
 
 - Change values in attributes/default.rb as needed.  These are mostly paths and filenames.
