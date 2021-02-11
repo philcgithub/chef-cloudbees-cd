@@ -31,3 +31,6 @@ Gemfile.lock
 
 # ## Visual Studio Code
 .vscode
+
+# ## CloudBees CD license file
+license.xml
