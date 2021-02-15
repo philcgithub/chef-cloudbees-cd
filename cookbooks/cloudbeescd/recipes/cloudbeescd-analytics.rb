@@ -19,9 +19,10 @@ cloudbeescd_server 'server1' do
 end
 
 # Run the installer
-execute 'install-cloudbeescd-analytics' do
-  command "sudo #{installer_path}/#{analytics_installer_file} --mode silent --elasticsearchUserPassword #{elasticsearch_password} --remoteServer #{analytics_remoteserver} --unixServerUser #{user} --unixServerGroup #{user} --remoteServerPassword #{admin_password} --remoteServerUser #{analytics_remoteserver_user}"
+cloudbeescd_analytics 'server1' do
+  installer_path "#{installer_path}"
+  analytics_installer_file "#{analytics_installer_file}"
   user "#{user}"
-  group "#{user}"
-  action :run
+  flags "--elasticsearchUserPassword #{elasticsearch_password} --remoteServer #{analytics_remoteserver} --unixServerUser #{user} --unixServerGroup #{user} --remoteServerPassword #{admin_password} --remoteServerUser #{analytics_remoteserver_user}"
+  action :create
 end
