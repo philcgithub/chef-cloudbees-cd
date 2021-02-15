@@ -1,15 +1,17 @@
 property :instance_name, String, name_property: true
 property :flags, String, default: ''
-installer_path = "#{node['cloudbeescd']['installer-path']}"
-server_installer_file = "#{node['cloudbeescd']['server-installer-file']}"
+property :admin_password, String
+property :user, String
+property :installer_path, String
+property :server_installer_file, String
 
 action :create do
   execute 'install-cloudbeescd-server' do
     flags = '--mode silent '
     flags << new_resource.flags
-    command "sudo #{installer_path}/#{server_installer_file} #{flags}"
-    user "#{user}"
-    group "#{user}"
+    command "sudo #{new_resource.installer_path}/#{new_resource.server_installer_file} #{flags}"
+    user "#{new_resource.user}"
+    group "#{new_resource.user}"
     action :run
   end
 end
@@ -17,16 +19,55 @@ end
 action :delete do
   execute 'uninstall-cloudbeescd-server' do
     command '/opt/electriccloud/electriccommander/uninstall'
-    user " #{user}"
-    group "#{user}"
+    user "#{new_resource.user}"
+    group "#{new_resource.user}"
     action :run
   end
 end
 
-# action :importlicense do
+action :waitForSetup do
+  ruby_block 'Wait for CloudBees CD Server setup to finish' do
+    block do
+      true until ::File.foreach('/opt/electriccloud/electriccommander/logs/setupScripts.log').grep(/Finished loading/).any?
+      # Wait between checks
+      sleep(10)
+    end
+    action :run
+  end
+end
 
-# end
+action :importLicense do
+  # Copy license file if supplied
+  cookbook_file '/tmp/license.xml' do
+    source 'license.xml'
+    owner "#{new_resource.user}"
+    group "#{new_resource.user}"
+    action :create
+    ignore_failure true
+  end
+  
+  # Apply license if supplied
+  bash 'Apply license.xml' do
+    only_if { ::File.exist?('/tmp/license.xml') }
+    code <<-EOH
+      /opt/electriccloud/electriccommander/bin/ectool --server localhost login "admin" "#{new_resource.admin_password}"
+      /opt/electriccloud/electriccommander/bin/ectool importLicenseData /tmp/license.xml
+    EOH
+    action :run
+  end
+  
+  # Remove license file if it was copied over
+  file '/tmp/license.xml' do
+    action :delete
+  end
+end
 
-# action :setpwd do
-
-# end
+action :setAdminPwd do
+  bash 'Set admin password' do
+    code <<-EOH
+      /opt/electriccloud/electriccommander/bin/ectool --server localhost login "admin" "changeme"
+      /opt/electriccloud/electriccommander/bin/ectool modifyUser "admin" --password "#{new_resource.admin_password}" --sessionPassword "changeme"
+    EOH
+    action :run
+  end
+end
