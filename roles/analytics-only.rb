@@ -1,3 +1,3 @@
 name "analytics-only"
 description "Install CloudBees Analytics only."
-run_list "recipe[cloudbees-cd::setup-env]", "recipe[cloudbees-cd::cloudbees-cd-analytics]"
+run_list "recipe[cloudbeescd::setup-env]", "recipe[cloudbeescd::cloudbeescd-analytics]"

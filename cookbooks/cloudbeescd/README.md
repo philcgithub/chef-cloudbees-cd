@@ -17,8 +17,8 @@ The following roles have been defined.
 ## How to use ##
 
 - Change values in attributes/default.rb as needed.  These are mostly paths and filenames.
-- Change values in data_bag 'cloudbees-cd' as needed.  This data bag is for sensitive data (ie passwords)
-- Encrypt data_bag 'cloudbees-cd' as usual
+- Change values in data_bag 'cloudbeescd' as needed.  This data bag is for sensitive data (ie passwords)
+- Encrypt data_bag 'cloudbeescd' as usual
 
 Run the role, for example using Chef Zero approach:
 

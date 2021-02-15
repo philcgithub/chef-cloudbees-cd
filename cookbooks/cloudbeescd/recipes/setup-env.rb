@@ -1,15 +1,15 @@
 #
-# Cookbook:: cloudbees-cd
+# Cookbook:: cloudbeescd
 # Recipe:: setup-env
 #
 # Copyright:: 2021, The Authors, All Rights Reserved.
 
-user = "#{node['cloudbees-cd']['installer-user-name']}"
-config_bag = data_bag_item('cloudbees-cd', 'config')
+user = "#{node['cloudbeescd']['installer-user-name']}"
+config_bag = data_bag_item('cloudbeescd', 'config')
 password = config_bag['installer-user-password']
-installer_path = "#{node['cloudbees-cd']['installer-path']}"
-server_installer_file = "#{node['cloudbees-cd']['server-installer-file']}"
-analytics_installer_file = "#{node['cloudbees-cd']['analytics-installer-file']}"
+installer_path = "#{node['cloudbeescd']['installer-path']}"
+server_installer_file = "#{node['cloudbeescd']['server-installer-file']}"
+analytics_installer_file = "#{node['cloudbeescd']['analytics-installer-file']}"
 
 # Add user and set password
 user "#{user}" do
