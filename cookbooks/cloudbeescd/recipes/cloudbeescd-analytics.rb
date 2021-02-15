@@ -14,13 +14,8 @@ analytics_remoteserver_user = "#{node['cloudbeescd']['analytics-remoteserver-use
 admin_password = config_bag['admin-password']
 
 # Check server setup has finished
-ruby_block 'Wait for CloudBees CD Server setup to finish' do
-  block do
-    true until ::File.foreach('/opt/electriccloud/electriccommander/logs/setupScripts.log').grep(/Finished loading/).any?
-    # Wait between checks
-    sleep(10)
-  end
-  action :run
+cloudbeescd_server 'server1' do
+  action :waitForSetup
 end
 
 # Run the installer
