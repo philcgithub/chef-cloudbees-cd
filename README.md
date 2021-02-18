@@ -2,11 +2,11 @@
 
 ## Introduction ##
 
-This recipe will install CloudBees CD.  It currently either sets up an all-in-one server in express mode (using builtin mariadb database) or an all-in-one server connecting to an external mysql database.
+This cookbook can be used to install CloudBees CD.  It currently either sets up an all-in-one server in express mode (using builtin mariadb database) or an all-in-one server connecting to an external mysql database.
 
 The installation will be using the self-singed certificates.
 
-It has been tested on Ubuntu 18.04 and RHEL 8.
+It has been tested on Ubuntu 18.04 and RHEL 8, and with CloudBees CD 10.0.2.
 ## Roles ##
 
 The following roles have been defined.
@@ -15,6 +15,16 @@ The following roles have been defined.
 - all-in-one-ext-mysql: Install all the components on a single target and connects to an external mysql database
 - server-only-express: Installs the CloudBees CD server only with builtin mariaDB
 - analytics-only: Installs the CloudBees Analytics only
+
+## Recipes ##
+
+The following recipes have been defined:
+
+- cloudbees-analytics.rb
+- cloudbees-server-express.rb
+- cloudbees-server-ext-mysql.rb
+- default.rb (the equivalent to role 'all-in-one-express')
+- setup-env.rb
 ## How to use ##
 
 - Change values in attributes/default.rb as needed.  These are mostly paths and filenames.
