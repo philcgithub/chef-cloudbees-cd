@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-This recipe will install CloudBees CD.  It currently assumes all components will be installed on a single server and it will use the 'expressServer' option (ie using builtin mariaDB database).
+This recipe will install CloudBees CD.  It currently eitehr sets up an all-in-one server in express mode (using builtin mariadb database) or all-in-one connecting to an external mysql database.
 
 The installation will be using the self-singed certificates.
 
@@ -11,8 +11,9 @@ It has been tested on Ubuntu 18.04 and RHEL 8.
 
 The following roles have been defined.
 
-- all-in-one: Installs on the components on a single target
-- server-only: Installs the CloudBees CD server only
+- all-in-one-express: Installs all the components on a single target and uses builtin mariaDB
+- all-in-one-ext-mysql: Install all the components on a single target and connects to an external mysql database
+- server-only-express: Installs the CloudBees CD server only with builtin mariaDB
 - analytics-only: Installs the CloudBees Analytics only
 ## How to use ##
 
