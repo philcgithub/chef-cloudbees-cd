@@ -1,7 +1,7 @@
 {
   "id": "config",
   "installer-user-password": "cloudbees1",
-  "db-password": "cloudbees1",
+  "db-password": "root123",
   "admin-password": "12345",
   "elasticsearch-password": "cloudbees1"
 }
