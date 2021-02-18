@@ -34,3 +34,6 @@ Gemfile.lock
 
 # ## CloudBees CD license file
 license.xml
+
+# ## mysql connector jar file
+mysql-connector-java*.jar
