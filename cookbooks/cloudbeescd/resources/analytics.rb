@@ -8,7 +8,7 @@ action :create do
   execute 'install-cloudbeescd-analytics' do
     flags = '--mode silent '
     flags << new_resource.flags
-    command "sudo #{new_resource.installer_path}/#{new_resource.analytics_installer_file} --mode silent #{flags}"
+    command "sudo #{new_resource.installer_path}/#{new_resource.analytics_installer_file} #{flags}"
     user "#{new_resource.user}"
     group "#{new_resource.user}"
     action :run
