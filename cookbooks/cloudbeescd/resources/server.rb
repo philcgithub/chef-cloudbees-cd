@@ -25,6 +25,17 @@ action :delete do
   end
 end
 
+action :waitForStartPreDbConfig do
+  ruby_block 'Wait for CloudBees CD Server setup to finish' do
+    block do
+      true until ::File.foreach('/opt/electriccloud/electriccommander/logs/commander.log').grep(/Waiting until a valid database configuration has been supplied/).  any?
+      # Wait between checks
+      sleep(10)
+    end
+    action :run
+  end
+end
+
 action :waitForSetup do
   ruby_block 'Wait for CloudBees CD Server setup to finish' do
     block do
@@ -45,7 +56,7 @@ action :importLicense do
     action :create
     ignore_failure true
   end
-  
+
   # Apply license if supplied
   bash 'Apply license.xml' do
     only_if { ::File.exist?('/tmp/license.xml') }
@@ -55,7 +66,7 @@ action :importLicense do
     EOH
     action :run
   end
-  
+
   # Remove license file if it was copied over
   file '/tmp/license.xml' do
     action :delete
@@ -69,5 +80,20 @@ action :setAdminPwd do
       /opt/electriccloud/electriccommander/bin/ectool modifyUser "admin" --password "#{new_resource.admin_password}" --sessionPassword "changeme"
     EOH
     action :run
+  end
+end
+
+action :setDatabaseConfiguration do
+  bash 'Set database configuration' do
+    code <<-EOH
+      /opt/electriccloud/electriccommander/bin/ectool setDatabaseConfiguration #{new_resource.flags}
+    EOH
+    action :run
+  end
+end
+
+action :restart do
+  execute 'Restart CloudBees CD server' do
+    command "sudo systemctl restart commanderServer"
   end
 end
