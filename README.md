@@ -21,6 +21,7 @@ The following roles have been defined.
 - Change values in data_bag 'cloudbeescd' as needed.  This data bag is for sensitive data (ie passwords)
 - Encrypt data_bag 'cloudbeescd' as usual
 - You will need a CloudBees CD production license, place this in cookbooks/cloudbeescd/files and call it 'license.xml'
+- If connecting to an external mysql database then you will also need a mysql-connect-java-XXX.jar file in the cookbooks/cloudbeescd/files directory.  The recipe currently expects to find a file named 'mysql-connector-java-8.0.22.jar', if it is anything else than also update the source for the 'Copy myql connector java in to the right location' step in cloudbees-cd-server-ext-mysql.rb to match the actual name.  When copied to target this gets renamed to mysql-connector-java.jar
 
 Run the role, for example using Chef Zero approach:
 
