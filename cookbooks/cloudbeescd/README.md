@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-This recipe will install CloudBees CD.  It currently eitehr sets up an all-in-one server in express mode (using builtin mariadb database) or all-in-one connecting to an external mysql database.
+This recipe will install CloudBees CD.  It currently either sets up an all-in-one server in express mode (using builtin mariadb database) or an all-in-one server connecting to an external mysql database.
 
 The installation will be using the self-singed certificates.
 
