@@ -20,6 +20,7 @@ The following roles have been defined.
 - Change values in attributes/default.rb as needed.  These are mostly paths and filenames.
 - Change values in data_bag 'cloudbeescd' as needed.  This data bag is for sensitive data (ie passwords)
 - Encrypt data_bag 'cloudbeescd' as usual
+- You will need a CloudBees CD production license, place this in cookbooks/cloudbeescd/files and call it 'license.xml'
 
 Run the role, for example using Chef Zero approach:
 
