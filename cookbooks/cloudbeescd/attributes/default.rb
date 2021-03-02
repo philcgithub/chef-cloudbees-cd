@@ -1,8 +1,8 @@
 # Where to find the installers
 default['cloudbeescd']['installer-path'] = '/home/phil'
 # Names of the installer files
-default['cloudbeescd']['server-installer-file'] = 'CloudBeesFlow-x64-10.0.2.144701'
-default['cloudbeescd']['analytics-installer-file'] = 'CloudBeesFlowDevOpsInsightServer-x64-10.0.2.144701'
+default['cloudbeescd']['server-installer-file'] = 'CloudBeesFlow-x64-10.1.0.145850'
+default['cloudbeescd']['analytics-installer-file'] = 'CloudBeesFlowDevOpsInsightServer-x64-10.1.0.145850'
 # OS user that CloudBees CD should run as
 default['cloudbeescd']['installer-user-name'] = 'cloudbeescd'
 # Database details if not using internal mariadb
@@ -15,4 +15,6 @@ default['cloudbeescd']['database-user-name'] = 'root'
 default['cloudbeescd']['analytics-remoteserver'] = 'localhost'
 # Account for Analytics to connect with CloudBees CD server
 default['cloudbeescd']['analytics-remoteserver-user'] = 'admin'
-# Moved to data bag default['cloudbeescd']['analytics-remoteserver-password'] = 'changeme'
+# Server details
+# pre-10.1 the install-dir was /opt/electriccloud/electriccommander
+default['cloudbeescd']['install-dir'] = '/opt/cloudbees/sda'
