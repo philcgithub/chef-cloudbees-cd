@@ -12,9 +12,11 @@ elasticsearch_password = config_bag['elasticsearch-password']
 analytics_remoteserver = "#{node['cloudbeescd']['analytics-remoteserver']}"
 analytics_remoteserver_user = "#{node['cloudbeescd']['analytics-remoteserver-user']}"
 admin_password = config_bag['admin-password']
+install_dir = "#{node['cloudbeescd']['install-dir']}"
 
 # Check server setup has finished
 cloudbeescd_server 'server1' do
+  install_dir "#{install_dir}"
   action :waitForSetup
 end
 

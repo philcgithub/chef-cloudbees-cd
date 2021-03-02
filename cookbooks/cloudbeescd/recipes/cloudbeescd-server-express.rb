@@ -10,6 +10,7 @@ server_installer_file = "#{node['cloudbeescd']['server-installer-file']}"
 config_bag = data_bag_item('cloudbeescd', 'config')
 db_password = config_bag['db-password']
 admin_password = config_bag['admin-password']
+install_dir = "#{node['cloudbeescd']['install-dir']}"
 
 # Run the installer
 cloudbeescd_server 'server1' do
@@ -22,17 +23,20 @@ end
 
 # Check server setup has finished
 cloudbeescd_server 'server1' do
+  install_dir "#{install_dir}"
   action :waitForSetup
 end
 
 # Change admin password using ectool
 cloudbeescd_server 'server1' do
   admin_password "#{admin_password}"
+  install_dir "#{install_dir}"
   action :setAdminPwd
 end
 
 # Copy license file if supplied
 cloudbeescd_server 'server1' do
   user "#{user}"
+  install_dir "#{install_dir}"
   action :importLicense
 end
