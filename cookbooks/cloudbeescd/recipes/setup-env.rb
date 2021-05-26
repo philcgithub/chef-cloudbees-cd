@@ -10,6 +10,7 @@ password = config_bag['installer-user-password']
 installer_path = "#{node['cloudbeescd']['installer-path']}"
 server_installer_file = "#{node['cloudbeescd']['server-installer-file']}"
 analytics_installer_file = "#{node['cloudbeescd']['analytics-installer-file']}"
+agent_installer_file = "#{node['cloudbeescd']['agent-installer-file']}"
 
 # Add user and set password
 user "#{user}" do
@@ -22,6 +23,6 @@ end
 sudo 'installer' do
   users "#{user}"
   nopasswd true
-  commands ["#{installer_path}/#{server_installer_file}", "#{installer_path}/#{analytics_installer_file}"]
+  commands ["#{installer_path}/#{server_installer_file}", "#{installer_path}/#{analytics_installer_file}", "#{installer_path}/#{agent_installer_file}"]
   action :create
 end

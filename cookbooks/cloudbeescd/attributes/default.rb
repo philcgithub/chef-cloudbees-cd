@@ -3,6 +3,7 @@ default['cloudbeescd']['installer-path'] = '/home/phil'
 # Names of the installer files
 default['cloudbeescd']['server-installer-file'] = 'CloudBeesFlow-x64-10.1.0.145850'
 default['cloudbeescd']['analytics-installer-file'] = 'CloudBeesFlowDevOpsInsightServer-x64-10.1.0.145850'
+default['cloudbeescd']['agent-installer-file'] = 'CloudBeesFlowAgent-x64-10.1.0.145850'
 # OS user that CloudBees CD should run as
 default['cloudbeescd']['installer-user-name'] = 'cloudbeescd'
 # Database details if not using internal mariadb
@@ -18,3 +19,10 @@ default['cloudbeescd']['analytics-remoteserver-user'] = 'admin'
 # Server details
 # pre-10.1 the install-dir was /opt/electriccloud/electriccommander
 default['cloudbeescd']['install-dir'] = '/opt/cloudbees/sda'
+# Non-bound Agent details
+default['cloudbeescd']['agent-install-dir'] = '/opt/cloudbees/sda/agent'
+default['cloudbeescd']['agent-data-dir'] = '/opt/cloudbees/sda/agent'
+default['cloudbeescd']['agent-remoteserver'] = 'localhost'
+default['cloudbeescd']['agent-remoteserver-user'] = 'admin'
+default['cloudbeescd']['agent-port'] = '7800'
+default['cloudbeescd']['agent-local-port'] = '6800'
