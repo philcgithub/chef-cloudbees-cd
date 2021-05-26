@@ -56,5 +56,5 @@ sudo chef-client --local-mode --runlist "role[all-in-one-express]"
 - Run the agent only role:
 
 ```bash
-sudo chef-client --local-mode --why-run --runlist "role[agent-only]"
+sudo chef-client --local-mode --runlist "role[agent-only]"
 ```
